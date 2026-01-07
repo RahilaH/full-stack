@@ -19,7 +19,7 @@ Late payment and penalty calculation
 Tech Stack
 
 Frontend: HTML, CSS, JavaScript
-Backend: Node.js, Express.js
+Backend: Python Flask,APIs
 Database: MySQL
 
 Project Structure
