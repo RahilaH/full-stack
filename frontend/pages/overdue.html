@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monthly Due Payments</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../css/overdue.css" />
+</head>
+
+<body class="bg-slate-100 font-sans">
+
+<div class="flex min-h-screen">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <div>
+        <h1>Analogica</h1>
+        <p>Student Management</p>
+      </div>
+    </div>
+
+    <nav class="menu">
+      <a href="../pages/AdminDashboard.html" class="menu-item">📊 Dashboard</a>
+      <a href="../pages/enquiries.html" class="menu-item">📝 Enquiries</a>
+      <a href="../pages/enrollment.html" class="menu-item">🎓 Enrollments</a>
+      <a href="../pages/EMI.html" class="menu-item">💳 EMI Management</a>
+      <a href="../pages/overdue.html" class="menu-item active">⚠️ Overdue</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 p-8">
+
+    <div class="header">
+      <div>
+        <h2>MONTHLY DUES</h2>
+        <p class="subtitle">Includes automated late penalty calculation.</p>
+      </div>
+
+      <div class="header-actions text-right">
+        <p class="text-sm">Signed in as <b>Admin</b></p>
+        <p class="penalty">Penalty rate: ₹50 per day</p>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Student / Penalty</th>
+            <th>Installment</th>
+            <th>Due Date</th>
+            <th>Base Amount</th>
+            <th>Late Days</th>
+          </tr>
+        </thead>
+        <tbody id="dueTable"></tbody>
+      </table>
+    </div>
+
+  </main>
+</div>
+
+<script src="../js/overdue.js"></script>
+</body>
+</html>

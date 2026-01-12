@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login | Certisured</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../frontend/css/admin-login.css">
+</head>
+<body>
+
+<div class="login-page">
+
+  <div class="login-card">
+
+    <h2>Admin Login</h2>
+    <p class="sub-text">Access the Certisured Admin Dashboard</p>
+
+    <form>
+
+      <div class="input-group">
+        <label>Admin ID</label>
+        <input type="text" placeholder="Enter Admin ID" required>
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" placeholder="Enter Password" required>
+      </div>
+
+      <div class="options">
+        <label class="remember">
+          <input type="checkbox">
+          Remember me
+        </label>
+
+        <a href="#" class="forgot">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="login-btn">
+        Login
+      </button>
+
+    </form>
+
+    <!-- FUTURE API NOTE -->
+    <p class="api-note">
+      🔒 Authentication will be secured via backend API
+    </p>
+
+  </div>
+
+</div>
+
+</body>
+</html>
+
+<script>
+  // Simple client-side handler to redirect to the dashboard on login click
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // redirect to pages/AdminDashboard.html
+      window.location.href = 'pages/AdminDashboard.html';
+    });
+  });
+</script>

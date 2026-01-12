@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Analogica | Enrollments</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        tealDark: '#064e3b',
+        tealMid: '#0f766e',
+        tealLight: '#99f6e4'
+      }
+    }
+  }
+}
+</script>
+
+<link rel="stylesheet" href="../css/enrollment.css">
+</head>
+
+<body>
+
+<div class="flex min-h-screen">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <div>
+        <h1>Analogica</h1>
+        <p>Student Management</p>
+      </div>
+    </div>
+
+    <nav class="menu">
+      <a href="../pages/AdminDashboard.html" class="menu-item">📊 Dashboard</a>
+      <a href="../pages/enquiries.html" class="menu-item">📝 Enquiries</a>
+      <a href="../pages/enrollment.html" class="menu-item active">🎓 Enrollments</a>
+      <a href="../pages/EMI.html" class="menu-item">💳 EMI Management</a>
+      <a href="../pages/overdue.html" class="menu-item">⚠️ Overdue</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="flex-1 p-8">
+
+    <div class="header">
+      <h2>ENROLLED STUDENTS</h2>
+      <div class="header-actions">
+        <input id="searchInput" type="search" placeholder="Search students..." class="search-input">
+        <button id="openModal" class="add">➕ Add Student</button>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Program</th>
+            <th>Join Date</th>
+            <th>Plan</th>
+            <th>Amount</th>
+            <th>EMI</th>
+          </tr>
+        </thead>
+        <tbody id="studentTable">
+          <!-- Rows are added by enrollment.js -->
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+</div>
+
+<!-- MODAL -->
+<div id="studentModal" class="modal">
+  <div class="modal-content fade-in">
+    <h3>Add Enrolled Student</h3>
+
+    <input id="name" placeholder="Student Name">
+    <input id="email" placeholder="Email">
+    <input id="program" placeholder="Program">
+    <input id="date" type="date">
+    <input id="plan" placeholder="Payment Plan">
+    <input id="amount" placeholder="Amount">
+
+    <div class="modal-actions">
+      <button id="closeModal">Cancel</button>
+      <button id="addStudent" class="add-btn">Add</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/enrollment.js"></script>
+</body>
+</html>

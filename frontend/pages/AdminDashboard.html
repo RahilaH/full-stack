@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard | Analogica</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+
+<body class="bg-slate-100 font-sans">
+
+<div class="flex min-h-screen">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <div>
+        <h1>Analogica</h1>
+        <p>Student Management</p>
+      </div>
+    </div>
+
+    <nav class="menu">
+      <a href="../pages/AdminDashboard.html" class="menu-item active">📊 Dashboard</a>
+      <a href="../pages/enquiries.html" class="menu-item">📝 Enquiries</a>
+      <a href="../pages/enrollment.html" class="menu-item">🎓 Enrollments</a>
+      <a href="../pages/EMI.html" class="menu-item">💳 EMI Management</a>
+      <a href="../pages/overdue.html" class="menu-item">⚠️ Overdue</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="flex-1 p-10">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div>
+        <h2>DASHBOARD</h2>
+        <p class="subtitle">Enrollment performance overview</p>
+      </div>
+
+      <div class="actions">
+        <div class="bg-white px-6 py-2 rounded-xl shadow text-teal-800 font-semibold">
+          👤 Admin
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI CARDS -->
+    <div class="grid md:grid-cols-3 gap-8 mb-12">
+
+      <div class="bg-white p-6 rounded-3xl shadow">
+        <p class="text-sm text-gray-500">Total Enquiries</p>
+        <h3 id="totalEnquiries" class="text-4xl font-extrabold text-emerald-600 mt-2">0</h3>
+      </div>
+
+      <div class="bg-white p-6 rounded-3xl shadow">
+        <p class="text-sm text-gray-500">Enrollments</p>
+        <h3 id="totalEnrollments" class="text-4xl font-extrabold text-green-600 mt-2">0</h3>
+      </div>
+
+      <div class="bg-white p-6 rounded-3xl shadow">
+        <p class="text-sm text-gray-500">Dropouts</p>
+        <h3 id="totalDropouts" class="text-4xl font-extrabold text-red-500 mt-2">0</h3>
+      </div>
+
+    </div>
+
+    <!-- GRAPH -->
+    <div class="bg-white p-8 rounded-3xl shadow">
+      <h3 class="text-2xl font-bold mb-6 text-green-900">
+        Enquiry → Enrollment Funnel
+      </h3>
+      <canvas id="enrollmentChart" height="120"></canvas>
+    </div>
+
+  </main>
+</div>
+
+<!-- Custom JS -->
+<script src="../js/dashboard.js"></script>
+</body>
+</html>

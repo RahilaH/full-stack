@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Analogica | Enquiries</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        tealDark: '#064e3b',
+        tealMid: '#0f766e',
+        tealLight: '#99f6e4'
+      }
+    }
+  }
+}
+</script>
+
+<link rel="stylesheet" href="../css/enquiries.css">
+</head>
+
+<body class="bg-slate-100 font-sans">
+
+<div class="flex min-h-screen">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <div>
+        <h1>Analogica</h1>
+        <p>Student Management</p>
+      </div>
+    </div>
+
+    <nav class="menu">
+      <a href="../pages/AdminDashboard.html" class="menu-item">📊 Dashboard</a>
+      <a href="../pages/enquiries.html" class="menu-item active">📝 Enquiries</a>
+      <a href="../pages/enrollment.html" class="menu-item">🎓 Enrollments</a>
+      <a href="../pages/EMI.html" class="menu-item">💳 EMI Management</a>
+      <a href="../pages/overdue.html" class="menu-item">⚠️ Overdue</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="flex-1 p-8">
+
+    <div class="header">
+      <h2 class="page-title">ENQUIRIES</h2>
+
+      <div class="header-actions">
+        <input id="searchInput" type="search" placeholder="Search enquiries..." class="search-input">
+        <button id="uploadBtn" class="light">📤 Upload CSV</button>
+        <button id="addEnquiryBtn" class="add">➕ Add Enquiry</button>
+      </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Program</th>
+            <th>Status</th>
+            <th>Dropouts</th>
+          </tr>
+        </thead>
+        <tbody id="enquiryTable"></tbody>
+      </table>
+    </div>
+
+  </main>
+</div>
+
+<input type="file" id="fileInput" accept=".csv" hidden>
+
+<!-- MODAL -->
+<div id="enquiryModal" class="modal">
+  <div class="modal-content">
+    <h3>Add Enquiry</h3>
+
+    <form id="enquiryForm">
+      <input id="name" required placeholder="Student Name">
+      <input id="email" required placeholder="Email">
+      <input id="course" placeholder="Course Interested">
+      <input id="status" placeholder="Status (New / Follow-up)">
+      <input id="dropouts" placeholder="Dropouts Reason">
+
+      <div class="modal-actions">
+        <button type="button" id="cancelBtn">Cancel</button>
+        <button type="submit" class="add">Add</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../js/enquiries.js"></script>
+</body>
+</html>

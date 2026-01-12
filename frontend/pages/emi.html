@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EMI Management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/emi.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- LOGO -->
+    <div class="logo">
+      <div class="logo-icon">A</div>
+      <div>
+        <h3>Analogica</h3>
+        <p>Student Management</p>
+      </div>
+    </div>
+
+    <!-- MENU -->
+   <nav class="menu">
+  <a href="../pages/AdminDashboard.html" class="menu-item">📊 Dashboard</a>
+  <a href="../pages/enquiries.html" class="menu-item">📝 Enquiries</a>
+  <a href="../pages/enrollment.html" class="menu-item">🎓 Enrollments</a>
+  <a href="../pages/EMI.html" class="menu-item">💳 EMI Management</a>
+  <a href="../pages/overdue.html" class="menu-item">⚠️ Overdue</a>
+</nav>
+
+
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+      <h2>EMI MANAGEMENT</h2>
+
+      <div class="actions">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search student..."
+          class="search"
+        >
+        <button class="light" onclick="exportCSV()">Export</button>
+        <button class="add" onclick="openModal()">+ Add EMI</button>
+      </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-card">
+      <table id="emiTable">
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>EMI No</th>
+            <th>Amount</th>
+            <th>Due Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filled by JS -->
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+</div>
+
+<!-- ===============================
+     ADD EMI MODAL
+================================ -->
+
+<div class="modal" id="emiModal">
+  <div class="modal-content">
+    <h3>Add EMI</h3>
+
+    <input type="text" id="studentName" placeholder="Student Name">
+    <input type="number" id="emiNo" placeholder="EMI No">
+    <input type="number" id="amount" placeholder="Amount">
+    <input type="date" id="dueDate">
+
+    <select id="status">
+      <option value="Pending">Pending</option>
+      <option value="Paid">Paid</option>
+    </select>
+
+    <div class="modal-actions">
+      <button onclick="closeModal()">Cancel</button>
+      <button onclick="addEMI()">Add</button>
+    </div>
+  </div>
+</div>
+
+<!-- JS -->
+<script src="../js/emi.js"></script>
+
+</body>
+</html>
