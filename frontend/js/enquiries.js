@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       email: document.getElementById("email").value.trim(),
       course: document.getElementById("course").value.trim(),
       status: document.getElementById("status").value.trim() || "New",
-      reason: document.getElementById("dropouts").value.trim() || "-"
+      dropout_reason: document.getElementById("dropout_reason").value.trim() || "-"
     };
 
     if (!payload.name || !payload.email || !payload.course) {
@@ -110,7 +110,7 @@ function loadEnquiries() {
   fetch("http://localhost:5000/enquiries")
     .then(res => res.json())
     .then(data => {
-      console.log("ENQUIRIES DATA:", data); // 👈 important
+      console.log("ENQUIRIES DATA:", data);
 
       const table = document.getElementById("enquiryTable");
       table.innerHTML = "";
@@ -122,7 +122,7 @@ function loadEnquiries() {
             <td>${e.email || "-"}</td>
             <td>${e.course || "-"}</td>
             <td>${e.status || "-"}</td>
-            <td>${e.reason || "-"}</td>
+            <td>${e.dropout_reason || "-"}</td>
           </tr>
         `;
       });

@@ -22,6 +22,7 @@ tailwind.config = {
 }
 </script>
 
+<link rel="stylesheet" href="../css/logo.css">
 <link rel="stylesheet" href="../css/enquiries.css">
 </head>
 
@@ -32,10 +33,10 @@ tailwind.config = {
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="logo">
-      <div class="logo-icon">A</div>
-      <div>
-        <h1>Analogica</h1>
-        <p>Student Management</p>
+      <img src="../assets/images/icons/logos/certisurd.jpg" class="logo-img">
+      <div class="logo-text">
+        <h3>Certisured</h3>
+        <span>Student Management</span>
       </div>
     </div>
 
@@ -43,7 +44,6 @@ tailwind.config = {
       <a href="../pages/AdminDashboard.html" class="menu-item">📊 Dashboard</a>
       <a href="../pages/enquiries.html" class="menu-item active">📝 Enquiries</a>
       <a href="../pages/enrollment.html" class="menu-item">🎓 Enrollments</a>
-      <a href="../pages/EMI.html" class="menu-item">💳 EMI Management</a>
       <a href="../pages/overdue.html" class="menu-item">⚠️ Overdue</a>
     </nav>
   </aside>
@@ -70,7 +70,7 @@ tailwind.config = {
             <th>Email</th>
             <th>Program</th>
             <th>Status</th>
-            <th>Dropouts</th>
+            <th>Dropout Reason</th>
           </tr>
         </thead>
         <tbody id="enquiryTable"></tbody>
@@ -80,7 +80,7 @@ tailwind.config = {
   </main>
 </div>
 
-<input type="file" id="fileInput" accept=".csv" hidden>
+<input type="file" id="fileInput" accept=".csv,.xlsx,.xls" hidden>
 
 <!-- MODAL -->
 <div id="enquiryModal" class="modal">
@@ -91,8 +91,22 @@ tailwind.config = {
       <input id="name" required placeholder="Student Name">
       <input id="email" required placeholder="Email">
       <input id="course" placeholder="Course Interested">
-      <input id="status" placeholder="Status (New / Follow-up)">
-      <input id="dropouts" placeholder="Dropouts Reason">
+
+      <!-- STATUS -->
+      <select id="status">
+        <option value="New">New</option>
+        <option value="Enrolled">Enrolled</option>
+        <option value="Dropout">Dropout</option>
+      </select>
+
+      <!-- DROPOUT REASON (DROPDOWN) -->
+      <select id="dropout_reason" style="display:none">
+        <option value="">Select Dropout Reason</option>
+        <option value="Financial">Financial</option>
+        <option value="Not Interested">Not Interested</option>
+        <option value="Joined Elsewhere">Joined Elsewhere</option>
+        <option value="Personal Reasons">Personal Reasons</option>
+      </select>
 
       <div class="modal-actions">
         <button type="button" id="cancelBtn">Cancel</button>
@@ -103,5 +117,23 @@ tailwind.config = {
 </div>
 
 <script src="../js/enquiries.js"></script>
+
+<!-- ✅ DROPDOWN LOGIC -->
+<script>
+  const statusSelect = document.getElementById("status");
+  const reasonSelect = document.getElementById("dropout_reason");
+
+  statusSelect.addEventListener("change", () => {
+    if (statusSelect.value === "Dropout") {
+      reasonSelect.style.display = "block";
+      reasonSelect.required = true;
+    } else {
+      reasonSelect.style.display = "none";
+      reasonSelect.required = false;
+      reasonSelect.value = "";
+    }
+  });
+</script>
+
 </body>
 </html>

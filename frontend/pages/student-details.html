@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student EMI Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/student-details.css" />
+  <link rel="stylesheet" href="../css/logo.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+  <img src="../assets/images/icons/logos/certisurd.jpg" class="logo-img">
+  <div class="logo-text">
+    <h3>Certisured</h3>
+    <span>Student Management</span>
+  </div>
+</div>
+
+    <nav class="menu">
+      <a href="../pages/AdminDashboard.html" class="menu-item ">📊 Dashboard</a>
+      <a href="../pages/enquiries.html" class="menu-item">📝 Enquiries</a>
+      <a href="../pages/enrollment.html" class="menu-item">🎓 Enrollments</a>
+      <a href="../pages/EMI.html" class="menu-item active">💳 EMI Management</a>
+      <a href="../pages/overdue.html" class="menu-item">⚠️ Overdue</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+      <div>
+        <h1>EMI MANAGEMENT</h1>
+        <p>Enquiries, enrollments, and EMI health</p>
+      </div>
+
+      <div class="top-actions">
+        <span>Signed in as <strong>Admin</strong></span>
+        <button class="btn-outline">Export</button>
+    
+      </div>
+    </div>
+
+    <!-- STUDENT EMI PROFILE -->
+    <section class="card">
+      <h2>Student EMI Profile</h2>
+      <p class="sub-text">Installment tracking and upcoming dues.</p>
+
+      <div class="profile-row">
+        <div>
+          <!-- VALUES REMOVED ONLY -->
+          <h3 id="studentName"></h3>
+          <p id="courseInfo"></p>
+          
+        </div>
+
+        <div class="fee-box">
+          <div>
+            <span>Total fee</span>
+            <strong id="totalFee"></strong>
+          </div>
+          <div>
+            <span>Paid</span>
+            <strong id="paidFee"></strong>
+          </div>
+          <div>
+            <span>Remaining</span>
+            <strong id="remainingFee"></strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-section">
+        <span id="installmentText"></span>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTALLMENT TRACKER -->
+    <section class="card">
+      <div class="tracker-header">
+        <h2>Installment tracker</h2>
+        <span class="next-due"></span>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Installment</th>
+            <th>Due Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Paid On</th>
+          </tr>
+        </thead>
+        <tbody id="installmentTable"></tbody>
+      </table>
+    </section>
+
+  </main>
+</div>
+
+<script src="../js/student-emi.js"></script>
+</body>
+</html>

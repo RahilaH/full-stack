@@ -21,7 +21,7 @@ tailwind.config = {
   }
 }
 </script>
-
+<link rel="stylesheet" href="../css/logo.css">
 <link rel="stylesheet" href="../css/enrollment.css">
 </head>
 
@@ -31,22 +31,24 @@ tailwind.config = {
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <div class="logo">
-      <div class="logo-icon">A</div>
-      <div>
-        <h1>Analogica</h1>
-        <p>Student Management</p>
-      </div>
-    </div>
+  <div class="logo">
+  <img src="../assets/images/icons/logos/certisurd.jpg" class="logo-img">
+  <div class="logo-text">
+    <h3>Certisured</h3>
+    <span>Student Management</span>
+  </div>
+</div>
 
-    <nav class="menu">
-      <a href="../pages/AdminDashboard.html" class="menu-item">📊 Dashboard</a>
-      <a href="../pages/enquiries.html" class="menu-item">📝 Enquiries</a>
-      <a href="../pages/enrollment.html" class="menu-item active">🎓 Enrollments</a>
-      <a href="../pages/EMI.html" class="menu-item">💳 EMI Management</a>
-      <a href="../pages/overdue.html" class="menu-item">⚠️ Overdue</a>
-    </nav>
-  </aside>
+
+  <nav class="menu">
+    <a href="../pages/AdminDashboard.html" class="menu-item">📊 Dashboard</a>
+    <a href="../pages/enquiries.html" class="menu-item">📝 Enquiries</a>
+    <a href="../pages/enrollment.html" class="menu-item active">🎓 Enrollments</a>
+  
+    <a href="../pages/overdue.html" class="menu-item">⚠️ Overdue</a>
+  </nav>
+</aside>
+
 
   <!-- MAIN -->
   <main class="flex-1 p-8">

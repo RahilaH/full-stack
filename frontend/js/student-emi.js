@@ -1,45 +1,92 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const studentName = localStorage.getItem("emiStudent");
 
-  if (!studentName) {
-    alert("No student selected");
+  const params = new URLSearchParams(window.location.search);
+  const studentId = params.get("id");
+
+  if (!studentId) {
+    alert("Student ID missing");
     return;
   }
 
-  document.getElementById("studentTitle").innerText =
-    `EMI Details - ${studentName}`;
+  let TOTAL_FEE = 0;
+  let PAID_AMOUNT = 0;
+  let STUDENT_NAME = "";
 
-  fetch(`http://localhost:5000/emis/student/${encodeURIComponent(studentName)}`)
+  /* ===============================
+     LOAD STUDENT DETAILS
+  =============================== */
+  fetch(`http://localhost:5000/students/${studentId}`)
     .then(res => res.json())
-    .then(data => {
-      const tbody = document.querySelector("#emiTable tbody");
-      tbody.innerHTML = "";
+    .then(student => {
+      STUDENT_NAME = student.name; // ✅ IMPORTANT
 
-      if (!Array.isArray(data) || data.length === 0) {
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="4">No EMI records found</td>
-          </tr>`;
-        return;
-      }
+      document.getElementById("studentName").textContent = student.name;
+      document.getElementById("courseInfo").textContent = student.course;
 
-      data.forEach(e => {
-        tbody.innerHTML += `
-          <tr>
-            <td>${e.emi_no}</td>
-            <td>${e.amount}</td>
-            <td>${formatDate(e.due_date)}</td>
-            <td>${e.status}</td>
-          </tr>
-        `;
-      });
+      TOTAL_FEE = Number(student.amount);
+
+      document.getElementById("totalFee").textContent = "₹ " + TOTAL_FEE;
     })
-    .catch(err => {
-      console.error(err);
-      alert("Failed to load EMI data");
-    });
-});
+    .then(() => loadEMIs()) // ✅ load EMI only AFTER student loads
+    .catch(err => console.error("Student load error:", err));
 
-function formatDate(date) {
-  return new Date(date).toISOString().split("T")[0];
-}
+
+  /* ===============================
+     LOAD EMI LIST (BY STUDENT NAME)
+  =============================== */
+  function loadEMIs() {
+    fetch(`http://localhost:5000/emis/student/${STUDENT_NAME}`)
+      .then(res => res.json())
+      .then(emis => {
+        const table = document.getElementById("installmentTable");
+        table.innerHTML = "";
+
+        PAID_AMOUNT = 0;
+
+        if (emis.length === 0) {
+          table.innerHTML = `<tr><td colspan="5">No EMI records</td></tr>`;
+          updateSummary(0);
+          return;
+        }
+
+        emis.forEach(e => {
+          if (e.status === "Paid") {
+            PAID_AMOUNT += Number(e.amount);
+          }
+
+          table.innerHTML += `
+            <tr>
+              <td>Installment ${e.emi_no}</td>
+              <td>${e.due_date.split("T")[0]}</td>
+              <td>₹ ${e.amount}</td>
+              <td>${e.status}</td>
+              <td>${e.paid_on || "-"}</td>
+            </tr>
+          `;
+        });
+
+        updateSummary(PAID_AMOUNT);
+      })
+      .catch(err => console.error("EMI load error:", err));
+  }
+
+
+  /* ===============================
+     UPDATE SUMMARY + PROGRESS BAR
+  =============================== */
+  function updateSummary(paid) {
+    const remaining = TOTAL_FEE - paid;
+
+    document.getElementById("paidFee").textContent = "₹ " + paid;
+    document.getElementById("remainingFee").textContent = "₹ " + remaining;
+
+    const percent =
+      TOTAL_FEE > 0 ? Math.round((paid / TOTAL_FEE) * 100) : 0;
+
+    document.getElementById("progressFill").style.width = percent + "%";
+
+    document.getElementById("installmentText").textContent =
+      `Paid ₹${paid} of ₹${TOTAL_FEE} (${percent}%)`;
+  }
+
+});

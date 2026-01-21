@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Dashboard | Analogica</title>
 
-  <!-- Tailwind -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Chart.js -->
@@ -13,6 +13,7 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/logo.css">
 </head>
 
 <body class="bg-slate-100 font-sans">
@@ -22,18 +23,18 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="logo">
-      <div class="logo-icon">A</div>
-      <div>
-        <h1>Analogica</h1>
-        <p>Student Management</p>
-      </div>
-    </div>
+  <img src="../assets/images/icons/logos/certisurd.jpg" class="logo-img">
+  <div class="logo-text">
+    <h3>Certisured</h3>
+    <span>Student Management</span>
+  </div>
+</div>
+
 
     <nav class="menu">
       <a href="../pages/AdminDashboard.html" class="menu-item active">📊 Dashboard</a>
       <a href="../pages/enquiries.html" class="menu-item">📝 Enquiries</a>
       <a href="../pages/enrollment.html" class="menu-item">🎓 Enrollments</a>
-      <a href="../pages/EMI.html" class="menu-item">💳 EMI Management</a>
       <a href="../pages/overdue.html" class="menu-item">⚠️ Overdue</a>
     </nav>
   </aside>
@@ -42,16 +43,24 @@
   <main class="flex-1 p-10">
 
     <!-- HEADER -->
-    <div class="header">
+    <div class="header flex justify-between items-center mb-10">
       <div>
-        <h2>DASHBOARD</h2>
+        <h2 class="text-3xl font-bold">DASHBOARD</h2>
         <p class="subtitle">Enrollment performance overview</p>
       </div>
 
-      <div class="actions">
+      <!-- ADMIN + LOGOUT -->
+      <div class="flex items-center gap-4">
         <div class="bg-white px-6 py-2 rounded-xl shadow text-teal-800 font-semibold">
           👤 Admin
         </div>
+
+        <button
+          onclick="logout()"
+          class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl font-semibold shadow"
+        >
+          Logout
+        </button>
       </div>
     </div>
 
@@ -69,8 +78,8 @@
       </div>
 
       <div class="bg-white p-6 rounded-3xl shadow">
-        <p class="text-sm text-gray-500">Dropouts</p>
-        <h3 id="totalDropouts" class="text-4xl font-extrabold text-red-500 mt-2">0</h3>
+        <p class="text-sm text-gray-500">Dropout Rate (%)</p>
+        <h3 id="totalDropouts" class="text-4xl font-extrabold text-red-500 mt-2">0%</h3>
       </div>
 
     </div>
@@ -86,7 +95,19 @@
   </main>
 </div>
 
-<!-- Custom JS -->
+<!-- LOGOUT SCRIPT -->
+<script>
+  function logout() {
+    if (confirm("Are you sure you want to logout?")) {
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = "../index.html";
+    }
+  }
+</script>
+
+<!-- Dashboard JS -->
 <script src="../js/dashboard.js"></script>
+
 </body>
 </html>
